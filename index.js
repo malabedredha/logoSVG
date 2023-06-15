@@ -26,4 +26,27 @@ const userResponses = await inquirer.prompt([
       return true;
     },
   },
- 
+  {
+    type: "input",
+    name: "text color",
+    message: "text color(input a color code)",
+  },
+]);
+
+let shape;
+
+switch (userResponses.shape) {
+  case "circle":
+    shape = new Circle();
+    break;
+  case "triangle":
+    shape = new Triangle();
+    break;
+  case "square":
+    shape = new Square();
+    break;
+}
+
+fs.writeFile("shape.svg", shape.markUp, function (err) {
+  if (err) console.log(err);
+});
